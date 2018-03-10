@@ -42,7 +42,7 @@ Zusammen mit seinem Bruder Alexander von Humboldt zählt er zu den großen, fort
 %--
 % VERWEIS auf wilhelm
 %--
-Siehe \ref{fig:wilhelm}
+Siehe Abb. \ref{fig:wilhelm}
 
 Inmitten aller Vielfalt der von aufklärerischen Impulsen bestimmten, gemeinwohlorientierten Betätigungen in Politik, Bildungswesen, Kultur und Wissenschaft hatte Wilhelm von Humboldt stets zugleich die Auslotung und Bildung der eigenen Individualität und Persönlichkeit im Blick. In der wiederum auf menschliche Individuen allgemein anzuwendenden Zielformel geht es um „die höchste und proportionierlichste Ausbildung aller menschlichen Kräfte zu einem Ganzen“.
 
@@ -54,7 +54,7 @@ Seine mehrjährigen Forschungsreisen führten ihn nach Lateinamerika, in die USA
 %--
 % VERWEIS auf alexander 
 %--
-Siehe \ref{fig:alexander}
+Siehe Abb. \ref{fig:alexander}
 
 In Deutschland erlangte er vor allem mit den Ansichten der Natur und dem Kosmos außerordentliche Popularität. Sein bereits zu Lebzeiten hohes Ansehen spiegelt sich in Bezeichnungen wie „der zweite Kolumbus“, „wissenschaftlicher Wiederentdecker Amerikas“, „Wissenschaftsfürst“ und „der neue Aristoteles“ (Gedenkmünze der Pariser Akademie der Wissenschaften). Er wurde in zahlreiche in- und ausländische Akademien aufgenommen.
 
@@ -80,12 +80,41 @@ In Deutschland erlangte er vor allem mit den Ansichten der Natur und dem Kosmos 
 
 
 \section{Abbildungen beschriften}
+
+\begin{figure}[h]
+\begin{overpic}[
+	unit=1mm,
+	%grid,%Koordinatensystem
+	width=0.75\linewidth]{wilhelm}
+	\put(38,58){\huge\color{red}\LaTeX\ ist toll!}
+	\put(20,78){\large\color{orange}Meine Gedanken sind frei!}
+	\put(9,11){\includegraphics[width=3cm]{alexander}}
+\end{overpic}
+\caption{Wilhelm mit Text}
+\end{figure}
 %---
 % Kann ich auch noch eine Beschriftung in das Bild von Wilhelm bekommen?
 % Vielleicht sowas wie „LaTeX ist toll!“
 % Kannst du auch noch das Bild von Alexander in das Bild von Wilhelm integrieren?
 %---
 \section{Ausschnitthafte Vergrößerungen bei Abbildungen}
+
+\begin{figure}
+\begin{tikzpicture}[
+	spy using outlines={
+	circle,
+	red,
+	magnification=5,
+	size=7cm,
+	connect spies
+}]
+\node[anchor=south west, inner sep=0]
+(image) at (0,0){\includegraphics[width=0.5\linewidth]{wilhelm}};
+\spy on (5,3) in node at (10,10);
+\spy [blue, size=4cm] on (3.5,6) in node at (13,3);
+%\helpgrid
+\end{tikzpicture}
+\end{figure}
 
 %---
 % Das Bild von Wilhelm ist ja schön und gut, 

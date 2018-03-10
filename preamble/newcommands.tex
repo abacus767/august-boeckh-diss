@@ -25,3 +25,8 @@
 
 \newcommand\mysideref[1]{\marginnote{Abb. \ref{fig:#1}}}%Referenzen in der Marginalspalte
 
+\newcommand\helpgrid{
+\draw[help lines, xstep=.5,ystep=.5] (0,0) grid (15,15);
+\foreach \x in {0,1,...,15}{\node[anchor=north]at (\x,0){\x};}
+\foreach \y in {0,1,...,15}{\node[anchor=north]at (0,\y){\y};}
+}
