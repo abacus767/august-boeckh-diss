@@ -1,0 +1,27 @@
+% !TEX root=../august-boeckh-hauptdokument.tex
+
+\setkomafont{disposition}{\normalfont}%Überschriften normal
+\setkomafont{chapter}{\Huge\scshape}%Kapitelüberschriften als Kapitälchen
+\setkomafont{section}{\Large\itshape}
+
+\addtokomafont{footnotenumber}{\footnotesize\normalfont\sffamily}%Änderung der Fußnotennummerierung (geht auch mit \setkomafont)
+\setkomafont{pageheadfoot}{\sffamily}
+
+\deffootnote%
+{0.075cm}%Einrückung
+{\normalparindent}%Paragraphenabsatz
+{\makebox[\normalparindent][r]{\thefootnotemark\ }}
+\newlength{\normalparindent}
+\AtBeginDocument{\setlength{\normalparindent}{\parindent}}
+%\setfootnoterule{0pt}
+
+\makeatletter
+\newcommand\BC{\,v.\,Chr\@ifnextchar.{}{.\relax\@\xspace}}
+\newcommand\AD{\,n.\,Chr\@ifnextchar.{}{.\relax\@\xspace}}
+\makeatother
+
+\newcommand\Index[1]{\index[per]{#1}#1\xspace}
+\newcommand\Indexmargin[1]{\index[per]{#1}\marginnote{#1}#1\xspace}
+
+\newcommand\mysideref[1]{\marginnote{Abb. \ref{fig:#1}}}%Referenzen in der Marginalspalte
+

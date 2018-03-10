@@ -1,0 +1,37 @@
+% !TEX root=../august-boeckh-hauptdokument.tex
+
+\chapter[Infos]{Sich wiederholende Informationen mit leichter Änderungen erstelle ich gerne mit LuaTeX}
+\section{Einstiegsbeispiel}
+
+
+Bekannte Archäologen sind diese:
+- Johann Joachim Winckelmann; geboren im Jahr 1717; gestorben 1768.
+- Erich Boehringer; geboren im Jahr 1897; gestorben 1971.
+% usw.
+
+\DTLdisplaydb{archaeologen}%Zeige DB als Tabelle
+\pagebreak
+\DTLsort{Todesjahr=ascending}{archaeologen}%
+\\
+\DTLdisplaydb{archaeologen}
+
+\begin{itemize}
+\DTLforeach{archaeologen}
+{\nachname=Nachname,%
+\name=Name,%
+\geburtsjahr=Geburtsjahr,%
+\todesjahr=Todesjahr%
+}
+{\item \name\xspace \nachname;
+geboren im Jahr \geburtsjahr\ifdefempty\todesjahr{.}{;
+gestorben \todesjahr.}
+}
+\end{itemize}
+%---
+% Bitte hier eine Liste erstellen:
+% Dann nach dem Todesjahr sotieren.
+% Die Daten findest du in der csv-Datei archaeologen.csv
+% ---
+
+
+

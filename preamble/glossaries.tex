@@ -1,0 +1,47 @@
+% !TEX root=../august-boeckh-hauptdokument.tex
+
+\iffalse%alles Nachfolgende wird ignoriert.
+\newglossaryentry{Augustus}{name={\textbf{Augustus}},
+	description={Augustus (Imperator Caesar Divi Filius Augustus),
+		\newline *63\BC
+		\newline gest. 14\AD
+		\newline (27\BC -- 14\AD)},
+	first={Augustus (27\protect\BC -- 14\protect\AD)}
+}
+
+\newglossaryentry{Mark Anton}{
+	name={Mark Anton},
+	description={Verräter},
+	first={Mark Anton (der Verräter)}
+}
+
+\newglossaryentry{Kleopatra}{
+	name={Kleopatra},%
+	description={Kleopatra (Κλεοπάτρα Θεά Φιλοπάτωρ)
+		\newline *69\BC
+		\newline gest. 30\BC
+		\newline aus dem Geschlecht der Ptolemäer, letzte der Pharaonen},%
+	first={\textbf{Kleopatra}}
+}
+\fi%bis hierher wird ignoriert
+
+\glssetexpandfield{name}
+\glssetexpandfield{desc}
+\glssetexpandfield{first}
+\DTLforeach*{kaiser}%Datenbank aufrufen
+{\kaiser=Kaiser,%
+\name=Name,%
+\geburt=Geburt,%
+\geburtsort=Geburtsort,%
+\tod=Tod,%
+\sterbeort=Sterbeort,%
+\reign=Regierungszeit,%
+\shortreign=Regierungszeitkurz}%
+{\newglossaryentry{\kaiser}%
+{name={\textbf{\kaiser}},
+description = {\kaiser
+	\ifdefempty{\name}{}{\xspace(\name)};
+\newline \geburt\xspace \ifdefempty{\geburtsort}{}{\xspace in \geburtsort}
+\newline regierte\xspace\reign},
+first = {\kaiser\ifdefempty{\shortreign}{}{\xspace\shortreign}}}}
+

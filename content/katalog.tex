@@ -1,0 +1,35 @@
+% !TEX root=../august-boeckh-hauptdokument.tex
+
+\chapter{Katalog der Häuser}
+
+Hier kommt nun mein Katalog.
+\renewcommand\thesection{Kat.\arabic{section}}
+
+\DTLforeach{haeuser}%
+{\house=house,%
+\mylabel=label,%
+\size=size,%
+\mydescription=description,%
+\location=location,%
+\interior=interior,%
+\interiorM=interiorM,%
+\interiorW=interiorW,%
+\interiorS=interiorS}%
+{\section{\house}
+\label{cat:\mylabel}
+\mydescription
+\begin{labeling}{Ausstattung}
+	\item[Größe] \size\thinspace\square\meter%Befehl zum Aufrufen von SI-Einheiten, typographisch korrekt.
+	\item[Ort] \location
+	\item[Ausstattung]\ifdefempty{\interior}{~}{\interior}%Fake-Leerzeichen wegen direkt anschließender neuer Umgebung.
+	\begin{description}
+		\item[Mosaiken] \interiorM
+		\item[Wandgemälde] \interiorW
+		\ifdefempty{\interiorS}{}{
+		\item[Skulptur] \interiorS}
+	\end{description}
+\end{labeling}%
+}
+
+
+Schön ist das Haus \ref{cat:M-Fabius-Rufus}.

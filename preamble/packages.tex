@@ -1,0 +1,109 @@
+% !TEX root=../august-boeckh-hauptdokument.tex
+
+\usepackage{babel}
+
+\usepackage{graphicx}
+\graphicspath{{figures/}}%relativer Pfad zu den Bildern
+\usepackage{caption}
+\usepackage{subcaption}%für Bilder nebeneinander
+
+\usepackage[
+%content={Abbildung ausgeblendet, damit ich schneller kompilieren kann.},%Platzhaltertext
+%filename,%Pfad anzeigen
+size=normalsize,%Größe der Platzhalter
+position=center,%Position des Platzhalters
+noframe,%kein Rahmen
+]{draftfigure}%modifizieren von ausgeblendeten Abbildungen
+
+\usepackage{multicol}%mehrspaltiger Text
+
+\widowpenalty=10000 %vermeide Schusterjungen
+\clubpenalty=10000 %vermeide Hurenkinder
+
+\usepackage{libertine}
+\usepackage{xspace}
+\usepackage[dvipsnames]{xcolor}
+
+\usepackage{imakeidx}
+\makeindex[
+name=per,%Dies ist ein Personenindex
+title = {Index antiker Personen},
+columns=1,
+options={-s style/index-style.tex},
+]
+
+\makeindex[
+name=ant,
+title = {Index antiker Texte},
+columns=3,
+options={-s style/index-style.tex},
+]
+
+\indexsetup{%
+level=\addsec,%entspricht \section*
+firstpagestyle=scrheadings, %normale Seitenformatierung
+headers={\indexname}{\indexname}, %Kolumnentitel auf beiden Seiten
+}
+
+\usepackage[
+series={},
+nocritical,
+noend,
+noeledsec,
+nofamiliar,
+noledgroup
+]{reledmac}%am besten für Übersetzungen
+\usepackage{reledpar}
+
+\usepackage{tabularx}%für Tabellen
+\usepackage{booktabs}%für schöne Tabellen
+\usepackage{tablefootnote}%für Fußnoten in Tabellen
+
+\usepackage[headsepline=.5pt]
+{scrlayer-scrpage}
+
+\usepackage[singlelinecheck=false]{caption}
+
+\usepackage{chngcntr}%Änderung von Nummerierungen
+\counterwithout{table}{chapter}
+
+\usepackage{marginnote}%für Marginalspalten
+
+\usepackage{datatool}
+\DTLloaddb%
+{archaeologen}%Interner Name der Datenbank
+{data/archaeologen.csv}%Speicherort
+
+\DTLloaddb%lade Datenbank
+{kaiser}%interner Name
+{data/kaiser.csv}%Speicherort der Datei
+
+
+\usepackage[section=subsection,%Glossar direkt nach Bezugstext
+nonumberlist,%keine Seitenzahl
+nopostdot,%kein Punkt ans Ende
+]{glossaries}%für Glossare
+\makeglossaries
+
+\usepackage{SIunits}
+
+\DTLloaddb{fachstudenten}
+{data/fachstudenten.csv}
+
+\DTLloaddb{haeuser}
+{data/haeuser.csv}
+
+\usepackage{databar}%für Balkendiagramme
+\usepackage{datapie}%für Tortendiagramme
+
+\usepackage{etoolbox}%für kondizionale Operatoren
+\newtoggle{hund}%Definiert Bedingung.
+\newtoggle{nocopyright}
+
+\newcommand\missingcopyright{
+\iftoggle{nocopyright}
+{\setkeys{Gin}{draft}%setzt Bild auf draft
+\setkeys{draftfigure}{%
+filename = true,
+content = {Abbildung musste aufgrund fehlender Digitalrechte ausgeblendet werden.}}}
+{}}

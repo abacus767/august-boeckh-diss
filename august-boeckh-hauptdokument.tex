@@ -1,0 +1,72 @@
+%% !TEX TS-programm = lualatex
+% !BIB program = biber
+% !TEX spellcheck = de_DE
+
+\documentclass[greek,ngerman,parskip=half,
+%draft%zeigt Formatierung an
+]{scrbook}
+%\PassOptionsToPackage{draft}{graphicx}%beschränkt "draft" auf package graphicx
+
+
+\input{preamble/packages}
+\input{preamble/newcommands}%Eigene Änderungen
+\input{preamble/glossaries}
+
+
+
+\newtoggle{testdokument}
+\newtoggle{finalpdf}
+%\toggletrue{finalpdf}
+%\toggletrue{testdokument}
+\toggletrue{nocopyright}
+\iftoggle{finalpdf}{
+\togglefalse{testdokument}}%um sicherzugehen, dass nirgendwo anders der andere Toggle als true gesetzt ist.
+{\iftoggle{testdokument}{}
+{\includeonly{
+	%content/mehrspaltiger-text,
+	%content/tabellen,
+	%content/glossar,
+	%content/serienbriefe,
+	%content/indexe,
+	%content/wiederholende-info,
+	%content/glossar,
+	%content/serienbriefe
+	%content/katalog
+	%content/operatoren
+	content/abbildungen}
+}%false (testdokument)
+}%false (finalpdf)
+
+\begin{document}
+\iftoggle{testdokument}{\input{content/testdokument}}
+{\input{content/titelseite}
+	
+
+
+%----
+% Titelseite
+%----
+\setcounter{tocdepth}{0}%Ebenen im Inhaltsverzeichnis
+\tableofcontents
+
+
+%---
+% - Änderungsmöglichkeiten für das Aussehen des TOC?
+% - Nur Kapitel in das Inhaltsverzeichnis?
+%---
+
+\include{content/mehrspaltiger-text}
+\include{content/tabellen}
+\include{content/indexe}
+\include{content/wiederholende-info}
+\include{content/glossar}
+\include{content/serienbriefe}
+\include{content/abbildungen}
+\include{content/operatoren}
+\include{content/tafeln}
+\appendix%ändert die Nummerierung
+\include{content/katalog}
+}%false (testdokument)
+
+
+\end{document}

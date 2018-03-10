@@ -1,0 +1,146 @@
+% !TEX root=../august-boeckh-hauptdokument.tex
+
+\chapter{Serienbriefe, die zweite}
+
+\section{Studierende an der HU}
+
+An der Humboldt-Universität zu Berlin gibt es viele Studierende:
+Klassische Archäologie (54 im Bachelor, 23 im MA, 18 promovieren), 
+Alte Geschichte (98 BA, 58 MA, 28 schreiben an der Doktorarbeit),
+Klassische Philologie hat 78 Bachelors, 49 im Masterstudium und 23 stecken in der Promotion,
+anders in der Ägyptologie: 49 im Grundstudium, 57 im Aufbaustudium und 14 herangehende Doktoren.
+
+\section{Basic}
+
+
+\DTLdisplaydb{fachstudenten}
+
+\DTLforeach{fachstudenten}
+{\fach=Fach,%
+\ba=BA,%
+\ma=MA,%
+\phd=Phd%
+}%
+{\begin{description}
+\item[\large\fach]~%Fake-Leerzeichen
+\begin{labeling}{Promotion}
+\item[Bachelor] \ba
+\item[Master] \ma
+\item[Promotion] \phd
+\end{labeling}
+\end{description}}
+
+\section{Balkendiagram}
+
+\begin{figure}
+\DTLbarchart%
+{variable=\ba,%Ausschlag auf y-Achse
+barlabel=\fach,%Untere Beschriftung
+upperbarlabel=\ba%Obere Beschriftung
+}
+{fachstudenten}%Datenbankname
+{\ba=BA,%
+\fach=Fach}
+\caption{Anzahl der BA-Studierenden pro Fach}
+
+\end{figure}
+
+\begin{figure}[h]
+	\DTLbarchart%
+	{variable=\ma,%Ausschlag auf y-Achse
+		barlabel=\fach,%Untere Beschriftung
+		upperbarlabel=\ma%Obere Beschriftung
+	}
+	{fachstudenten}%Datenbankname
+	{\ma=MA,%
+		\fach=Fach}
+	\caption{Anzahl der MA-Studierenden pro Fach}
+	
+\end{figure}
+
+\begin{figure}[h]
+	\DTLsetbarcolor{2}{Periwinkle}
+	\DTLbarchart%
+	{variable=\phd,%Ausschlag auf y-Achse
+		barlabel=\fach,%Untere Beschriftung
+		upperbarlabel=\phd%Obere Beschriftung
+	}
+	{fachstudenten}%Datenbankname
+	{\phd=Phd,%
+		\fach=Fach}
+	\caption{Anzahl der PhD-Studierenden pro Fach}
+	
+\end{figure}
+%----
+% Diese Informationen möchte ich gerne auf unterschiedliche Arten zeigen:
+% - zuerst als einfache Tabellen
+% - Als Übersicht auf die einzelnen Fächer aufgeteilt
+% - Als Tortendiagramm
+% - Als Balkendiagramm wobei die Abschlüsse zusammengefasst werden
+%---
+
+\section{Tortendiagramm}
+
+\begin{figure}[h]
+\DTLsetpiesegmentcolor{3}{Periwinkle}
+\DTLpiechart%
+{variable=\ba,%
+outerlabel=\fach,%
+innerlabel={\DTLpiepercent\%},%
+cutaway={2,4},%
+rotateinner,%
+rotateouter%
+}
+{fachstudenten}
+{\ba=BA,%
+\fach=Fach}
+\caption{Tortendiagramm der BA'ler}
+\end{figure}
+
+\begin{figure}[h]
+	\DTLsetpiesegmentcolor{3}{Periwinkle}
+	\DTLsetpiesegmentcolor{1}{Plum}
+	\DTLpiechart%
+	{variable=\ma,%
+		outerlabel=\fach,%
+		innerlabel={\DTLpiepercent\%},%
+		cutaway={1,3},%
+		rotateinner,%
+		}
+	{fachstudenten}
+	{\ma=MA,%
+		\fach=Fach}
+	\caption{Tortendiagramm der MA'ler}
+\end{figure}
+
+
+\section{Balkendiagramm für alle Studenten}
+
+\begin{figure}[h]
+\DTLsetbarcolor{3}{Salmon}
+\DTLsetbarcolor{2}{Periwinkle}
+\DTLsetbarcolor{1}{Plum}
+\DTLbarwidth=.5cm
+\DTLmultibarchart%
+{variables={\ba,\ma,\phd},%
+barlabel=\fach,%
+verticalbars=false,%
+uppermultibarlabels={BA (\ba), MA (\ma), PhD (\phd)}}
+{fachstudenten}
+{\ba=BA,%
+\ma=MA,%
+\phd=Phd,%
+\fach=Fach}
+\caption{Mehrere Balkendiagramme}
+\end{figure}
+
+\section{Archäologischer Katalog der Häuser von Pompeji}
+
+
+%--
+% In den Anhang/Appendix soll der Katalog.
+% Alle Daten sind in der data/haeuser.csv-Datei
+%---
+
+
+
